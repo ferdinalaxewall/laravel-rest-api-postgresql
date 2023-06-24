@@ -338,7 +338,8 @@
                                 "properties": {
                                     "user_id": {
                                         "description": "ID User (Required)",
-                                        "type": "uuid"
+                                        "type": "string",
+                                        "format": "uuid"
                                     },
                                     "kode_voucher": {
                                         "description": "Kode Voucher Pesanan (Nullable)",
@@ -366,7 +367,20 @@
                                     "pesanan_produk": {
                                         "description": "Array Pesanan Produk (Required)",
                                         "type": "array",
-                                        "items": {}
+                                        "items": {
+                                            "properties": {
+                                                "produk_id": {
+                                                    "description": "ID Produk (Required)",
+                                                    "type": "string",
+                                                    "format": "uuid"
+                                                },
+                                                "jumlah": {
+                                                    "description": "Jumlah Produk (Required)",
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
                                     }
                                 },
                                 "type": "object"
@@ -440,7 +454,8 @@
                                 "properties": {
                                     "user_id": {
                                         "description": "ID User (Optional)",
-                                        "type": "uuid"
+                                        "type": "string",
+                                        "format": "uuid"
                                     },
                                     "kode_voucher": {
                                         "description": "Kode Voucher Pesanan (Optional)",
@@ -550,11 +565,13 @@
                                 "properties": {
                                     "pesanan_id": {
                                         "description": "ID Pesanan (Required)",
-                                        "type": "uuid"
+                                        "type": "string",
+                                        "format": "uuid"
                                     },
                                     "produk_id": {
                                         "description": "ID Produk (Required)",
-                                        "type": "uuid"
+                                        "type": "string",
+                                        "format": "uuid"
                                     },
                                     "jumlah": {
                                         "description": "Jumlah Produk (Required)",
@@ -632,11 +649,13 @@
                                 "properties": {
                                     "pesanan_id": {
                                         "description": "ID Pesanan (Optional)",
-                                        "type": "uuid"
+                                        "type": "string",
+                                        "format": "uuid"
                                     },
                                     "produk_id": {
                                         "description": "ID Produk (Optional)",
-                                        "type": "uuid"
+                                        "type": "string",
+                                        "format": "uuid"
                                     },
                                     "jumlah": {
                                         "description": "Jumlah Produk (Optional)",

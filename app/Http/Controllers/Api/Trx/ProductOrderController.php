@@ -108,12 +108,14 @@ class ProductOrderController extends Controller
      *                  @OA\Property(
      *                      property="pesanan_id",
      *                      description="ID Pesanan (Required)",
-     *                      type="uuid",
+     *                      type="string",
+     *                      format="uuid",
      *                  ),
      *                  @OA\Property(
      *                      property="produk_id",
      *                      description="ID Produk (Required)",
-     *                      type="uuid",
+     *                      type="string",
+     *                      format="uuid",
      *                  ),
      *                  @OA\Property(
      *                      property="jumlah",
@@ -185,12 +187,14 @@ class ProductOrderController extends Controller
      *                  @OA\Property(
      *                      property="pesanan_id",
      *                      description="ID Pesanan (Optional)",
-     *                      type="uuid",
+     *                      type="string",
+     *                      format="uuid",
      *                  ),
      *                  @OA\Property(
      *                      property="produk_id",
      *                      description="ID Produk (Optional)",
-     *                      type="uuid",
+     *                      type="string",
+     *                      format="uuid",
      *                  ),
      *                  @OA\Property(
      *                      property="jumlah",

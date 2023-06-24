@@ -105,7 +105,8 @@ class OrderController extends Controller
      *                  @OA\Property(
      *                      property="user_id",
      *                      description="ID User (Required)",
-     *                      type="uuid",
+     *                      type="string",
+     *                      format="uuid",
      *                  ),
      *                  @OA\Property(
      *                      property="kode_voucher",
@@ -137,18 +138,16 @@ class OrderController extends Controller
      *                      description="Array Pesanan Produk (Required)",
      *                      type="array",
      *                      @OA\Items(
-     *                          @OA\Schema(
-     *                              required={"produk_id","jumlah"},
-     *                              @OA\Property(
-     *                                  property="produk_id",
-     *                                  description="ID Produk (Required)",
-     *                                  type="uuid",
-     *                              ),
-     *                              @OA\Property(
-     *                                  property="jumlah",
-     *                                  description="Jumlah Produk (Required)",
-     *                                  type="integer",
-     *                              )
+     *                          @OA\Property(
+     *                              property="produk_id",
+     *                              description="ID Produk (Required)",
+     *                              type="string",
+     *                              format="uuid",
+     *                          ),
+     *                          @OA\Property(
+     *                              property="jumlah",
+     *                              description="Jumlah Produk (Required)",
+     *                              type="integer",
      *                          )
      *                      )
      *                  ),
@@ -218,7 +217,8 @@ class OrderController extends Controller
      *                  @OA\Property(
      *                      property="user_id",
      *                      description="ID User (Optional)",
-     *                      type="uuid",
+     *                      type="string",
+     *                      format="uuid",
      *                  ),
      *                  @OA\Property(
      *                      property="kode_voucher",
