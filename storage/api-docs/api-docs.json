@@ -4,6 +4,11 @@
         "title": "APIs For Laravel with PostgreSQL - Created Muhamad Ferdinal",
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": "http://localhost/api/v1"
+        }
+    ],
     "paths": {
         "/produk": {
             "get": {
