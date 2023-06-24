@@ -1,0 +1,899 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "APIs For Laravel with PostgreSQL - Created Muhamad Ferdinal",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/produk": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Get list of products",
+                "description": "Returns list of products",
+                "operationId": "findAllProduct",
+                "responses": {
+                    "200": {
+                        "description": "Pengambilan Data Produk Berhasil!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Pengambilan Data Produk!"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Create product data",
+                "description": "Create product data",
+                "operationId": "createProduct",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama",
+                                    "brand",
+                                    "harga",
+                                    "stok"
+                                ],
+                                "properties": {
+                                    "nama": {
+                                        "description": "Nama Produk (Required)",
+                                        "type": "string"
+                                    },
+                                    "brand": {
+                                        "description": "Brand Produk (Required)",
+                                        "type": "string"
+                                    },
+                                    "harga": {
+                                        "description": "Harga Produk (Required)",
+                                        "type": "integer"
+                                    },
+                                    "slug": {
+                                        "description": "Slug Produk (Nullable)",
+                                        "type": "string"
+                                    },
+                                    "stok": {
+                                        "description": "Stok Produk (Required)",
+                                        "type": "integer"
+                                    },
+                                    "tgl_release": {
+                                        "description": "Tanggal Release Produk (Nullable)",
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data Produk Berhasil Dibuat!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Membuat Data Produk!"
+                    }
+                }
+            }
+        },
+        "/produk/{produk_id}": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Get single product data",
+                "description": "Returns single product data",
+                "operationId": "findOneProduct",
+                "parameters": [
+                    {
+                        "name": "produk_id",
+                        "in": "path",
+                        "description": "Product id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pengambilan Data Produk Berhasil!"
+                    },
+                    "404": {
+                        "description": "Data Produk Tidak Ditemukan!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Pengambilan Data Produk!"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Update product data",
+                "description": "Update product data",
+                "operationId": "updateOneProduct",
+                "parameters": [
+                    {
+                        "name": "produk_id",
+                        "in": "path",
+                        "description": "Product id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nama": {
+                                        "description": "Nama Produk (Optional)",
+                                        "type": "string"
+                                    },
+                                    "brand": {
+                                        "description": "Brand Produk (Optional)",
+                                        "type": "string"
+                                    },
+                                    "harga": {
+                                        "description": "Harga Produk (Optional)",
+                                        "type": "integer"
+                                    },
+                                    "slug": {
+                                        "description": "Slug Produk (Optional)",
+                                        "type": "string"
+                                    },
+                                    "tgl_release": {
+                                        "description": "Tanggal Release Produk (Optional)",
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data Produk Berhasil Diperbarui!"
+                    },
+                    "404": {
+                        "description": "Data Produk Tidak Ditemukan!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Memperbarui Data Produk!"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Delete product data",
+                "description": "Delete product data",
+                "operationId": "deleteOneProduct",
+                "parameters": [
+                    {
+                        "name": "produk_id",
+                        "in": "path",
+                        "description": "Product id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data Produk Berhasil Dihapus!"
+                    },
+                    "404": {
+                        "description": "Data Produk Tidak Ditemukan!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Menghapus Data Produk!"
+                    }
+                }
+            }
+        },
+        "/produk-stock": {
+            "get": {
+                "tags": [
+                    "Product Stock"
+                ],
+                "summary": "Get list of product stocks",
+                "description": "Returns list of product stocks",
+                "operationId": "findAllProductStock",
+                "responses": {
+                    "200": {
+                        "description": "Pengambilan Data Produk Stok Berhasil!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Pengambilan Data Produk Stok!"
+                    }
+                }
+            }
+        },
+        "/produk-stock/{produk_id}": {
+            "get": {
+                "tags": [
+                    "Product Stock"
+                ],
+                "summary": "Get single product stock data",
+                "description": "Returns single product stock data",
+                "operationId": "findOneProductStock",
+                "parameters": [
+                    {
+                        "name": "produk_id",
+                        "in": "path",
+                        "description": "Product id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pengambilan Data Produk Stok Berhasil!"
+                    },
+                    "404": {
+                        "description": "Data Produk Stok Tidak Ditemukan!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Pengambilan Data Produk Stok!"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Product Stock"
+                ],
+                "summary": "Update product stock data",
+                "description": "Update product stock data",
+                "operationId": "updateOneProductStock",
+                "parameters": [
+                    {
+                        "name": "produk_id",
+                        "in": "path",
+                        "description": "Product id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "stok"
+                                ],
+                                "properties": {
+                                    "stok": {
+                                        "description": "Stok Produk (Required)",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data Produk Stok Berhasil Diperbarui!"
+                    },
+                    "404": {
+                        "description": "Data Produk Stok Tidak Ditemukan!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Memperbarui Data Produk Stok!"
+                    }
+                }
+            }
+        },
+        "/pesanan": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get list of orders",
+                "description": "Returns list of orders",
+                "operationId": "findAllOrder",
+                "responses": {
+                    "200": {
+                        "description": "Pengambilan Data Pesanan Berhasil!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Pengambilan Data Pesanan!"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Create order data",
+                "description": "Create order data",
+                "operationId": "createOrder",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "pesanan_produk"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "description": "ID User (Required)",
+                                        "type": "uuid"
+                                    },
+                                    "kode_voucher": {
+                                        "description": "Kode Voucher Pesanan (Nullable)",
+                                        "type": "string"
+                                    },
+                                    "tgl_pesanan": {
+                                        "description": "Tanggal Pesanan (Nullable)",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "tgl_pembayaran_lunas": {
+                                        "description": "Tenggal Pembayaran Lunas (Nullable)",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "tgl_dibatalkan": {
+                                        "description": "Tanggal Pesanan Dibatalkan (Nullable)",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "no_pesanan": {
+                                        "description": "Nomor Pesanan (Nullable)",
+                                        "type": "string"
+                                    },
+                                    "pesanan_produk": {
+                                        "description": "Array Pesanan Produk (Required)",
+                                        "type": "array",
+                                        "items": {}
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data Pesanan Berhasil Dibuat!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Membuat Data Pesanan!"
+                    }
+                }
+            }
+        },
+        "/pesanan/{pesanan_id}": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get single order data",
+                "description": "Returns single order data",
+                "operationId": "findOneOrder",
+                "parameters": [
+                    {
+                        "name": "pesanan_id",
+                        "in": "path",
+                        "description": "Pesanan id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pengambilan Data Pesanan Berhasil!"
+                    },
+                    "404": {
+                        "description": "Data Pesanan Tidak Ditemukan!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Pengambilan Data Pesanan!"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Update order data",
+                "description": "Update order data",
+                "operationId": "updateOneOrder",
+                "parameters": [
+                    {
+                        "name": "pesanan_id",
+                        "in": "path",
+                        "description": "Pesanan id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_id": {
+                                        "description": "ID User (Optional)",
+                                        "type": "uuid"
+                                    },
+                                    "kode_voucher": {
+                                        "description": "Kode Voucher Pesanan (Optional)",
+                                        "type": "string"
+                                    },
+                                    "tgl_pesanan": {
+                                        "description": "Tanggal Pesanan (Optional)",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "tgl_pembayaran_lunas": {
+                                        "description": "Tenggal Pembayaran Lunas (Optional)",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "tgl_dibatalkan": {
+                                        "description": "Tanggal Pesanan Dibatalkan (Optional)",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "no_pesanan": {
+                                        "description": "Nomor Pesanan (Optional)",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data Pesanan Berhasil Diperbarui!"
+                    },
+                    "404": {
+                        "description": "Data Pesanan Tidak Ditemukan!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Memperbarui Data Pesanan!"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Delete order data",
+                "description": "Delete order data",
+                "operationId": "deleteOneOrder",
+                "parameters": [
+                    {
+                        "name": "pesanan_id",
+                        "in": "path",
+                        "description": "Pesanan id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data Pesanan Berhasil Dihapus!"
+                    },
+                    "404": {
+                        "description": "Data Pesanan Tidak Ditemukan!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Menghapus Data Pesanan!"
+                    }
+                }
+            }
+        },
+        "/pesanan-produk": {
+            "get": {
+                "tags": [
+                    "Product Order"
+                ],
+                "summary": "Get list of product orders",
+                "description": "Returns list of product orders",
+                "operationId": "findAllProductOrder",
+                "responses": {
+                    "200": {
+                        "description": "Pengambilan Data Pesanan Produk Berhasil!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Pengambilan Data Pesanan Produk!"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Product Order"
+                ],
+                "summary": "Create product order data",
+                "description": "Create product order data",
+                "operationId": "createProductOrder",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "pesanan_id",
+                                    "produk_id",
+                                    "jumlah"
+                                ],
+                                "properties": {
+                                    "pesanan_id": {
+                                        "description": "ID Pesanan (Required)",
+                                        "type": "uuid"
+                                    },
+                                    "produk_id": {
+                                        "description": "ID Produk (Required)",
+                                        "type": "uuid"
+                                    },
+                                    "jumlah": {
+                                        "description": "Jumlah Produk (Required)",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data Pesanan Produk Berhasil Dibuat!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Membuat Data Pesanan Produk!"
+                    }
+                }
+            }
+        },
+        "/pesanan-produk/{pesanan_produk_id}": {
+            "get": {
+                "tags": [
+                    "Product Order"
+                ],
+                "summary": "Get single product order data",
+                "description": "Returns single product order data",
+                "operationId": "findOneProductOrder",
+                "parameters": [
+                    {
+                        "name": "pesanan_produk_id",
+                        "in": "path",
+                        "description": "Pesanan Produk id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pengambilan Data Pesanan Produk Berhasil!"
+                    },
+                    "404": {
+                        "description": "Data Pesanan Produk Tidak Ditemukan!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Pengambilan Data Pesanan Produk!"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Product Order"
+                ],
+                "summary": "Update product order data",
+                "description": "Update product order data",
+                "operationId": "updateOneProductOrder",
+                "parameters": [
+                    {
+                        "name": "pesanan_produk_id",
+                        "in": "path",
+                        "description": "Pesanan Produk id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "pesanan_id": {
+                                        "description": "ID Pesanan (Optional)",
+                                        "type": "uuid"
+                                    },
+                                    "produk_id": {
+                                        "description": "ID Produk (Optional)",
+                                        "type": "uuid"
+                                    },
+                                    "jumlah": {
+                                        "description": "Jumlah Produk (Optional)",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data Pesanan Produk Berhasil Diperbarui!"
+                    },
+                    "404": {
+                        "description": "Data Pesanan Produk Tidak Ditemukan!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Memperbarui Data Pesanan Produk!"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Product Order"
+                ],
+                "summary": "Delete product order data",
+                "description": "Delete product order data",
+                "operationId": "deleteOneProductOrder",
+                "parameters": [
+                    {
+                        "name": "pesanan_produk_id",
+                        "in": "path",
+                        "description": "Pesanan Produk id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data Pesanan Produk Berhasil Dihapus!"
+                    },
+                    "404": {
+                        "description": "Data Pesanan Produk Tidak Ditemukan!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Menghapus Data Pesanan Produk!"
+                    }
+                }
+            }
+        },
+        "/user": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get list of users",
+                "description": "Returns list of users",
+                "operationId": "findAllUser",
+                "responses": {
+                    "200": {
+                        "description": "Pengambilan Data User Berhasil!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Pengambilan Data User!"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create user data",
+                "description": "Create user data",
+                "operationId": "createUser",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama_depan",
+                                    "nama_belakang",
+                                    "jk",
+                                    "tgl_lahir"
+                                ],
+                                "properties": {
+                                    "nama_depan": {
+                                        "description": "Nama Depan User (Required)",
+                                        "type": "string"
+                                    },
+                                    "nama_belakang": {
+                                        "description": "Nama Belakang User (Required)",
+                                        "type": "string"
+                                    },
+                                    "alamat": {
+                                        "description": "Alamat User (Nullable)",
+                                        "type": "string"
+                                    },
+                                    "nomor_hp": {
+                                        "description": "Nomor Handphone User (Nullable)",
+                                        "type": "integer"
+                                    },
+                                    "jk": {
+                                        "description": "Jenis Kelamin User (Required)",
+                                        "type": "string"
+                                    },
+                                    "tgl_lahir": {
+                                        "description": "Tanggal Lahir User (Required)",
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data User Berhasil Dibuat!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Membuat Data User!"
+                    }
+                }
+            }
+        },
+        "/user/{user_id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get single user data",
+                "description": "Returns single user data",
+                "operationId": "findOneUser",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pengambilan Data User Berhasil!"
+                    },
+                    "404": {
+                        "description": "Data User Tidak Ditemukan!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Pengambilan Data User!"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update user data",
+                "description": "Update user data",
+                "operationId": "updateOneUser",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nama_depan": {
+                                        "description": "Nama Depan User (Optional)",
+                                        "type": "string"
+                                    },
+                                    "nama_belakang": {
+                                        "description": "Nama Belakang User (Optional)",
+                                        "type": "string"
+                                    },
+                                    "alamat": {
+                                        "description": "Alamat User (Optional)",
+                                        "type": "string"
+                                    },
+                                    "nomor_hp": {
+                                        "description": "Nomor Handphone User (Optional)",
+                                        "type": "integer"
+                                    },
+                                    "jk": {
+                                        "description": "Jenis Kelamin User (Optional)",
+                                        "type": "string"
+                                    },
+                                    "tgl_lahir": {
+                                        "description": "Tanggal Lahir User (Optional)",
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data User Berhasil Diperbarui!"
+                    },
+                    "404": {
+                        "description": "Data User Tidak Ditemukan!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Memperbarui Data User!"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Delete user data",
+                "description": "Delete user data",
+                "operationId": "deleteOneUser",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data User Berhasil Dihapus!"
+                    },
+                    "404": {
+                        "description": "Data User Tidak Ditemukan!"
+                    },
+                    "500": {
+                        "description": "Terjadi Kesalahan Saat Menghapus Data User!"
+                    }
+                }
+            }
+        }
+    }
+}
