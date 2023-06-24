@@ -7,6 +7,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Tentang Project
+
+Laravel Restful API dengan Database PostgreSQL, dan Menggunakan **Service Repository Pattern**.
+
 ## Instalasi
 
 Silahkan Clone Proyek ini dengan Mengikuti Command Berikut:
